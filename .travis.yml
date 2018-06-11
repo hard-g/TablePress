@@ -31,10 +31,28 @@ before_script:
   - phpenv versions
   - php --version
   - php -m
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "5.6" ]]; then composer global require --dev phpunit/phpunit ^5; fi
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.1" ]]; then composer global require --dev phpunit/phpunit ^6; fi
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" ]]; then composer global require --dev phpunit/phpunit ^6; fi
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.3" ]]; then composer global require --dev phpunit/phpunit ^6; fi
+- |
+  # Install the specified version of PHPUnit depending on the PHP version:
+  if [[ 1 == 1 ]]; then
+    case "$TRAVIS_PHP_VERSION" in
+      7.2|7.1|7.0|nightly)
+        echo "Using PHPUnit 6.x"
+        composer global require "phpunit/phpunit:^6"
+        ;;
+      5.6|5.5|5.4|5.3)
+        echo "Using PHPUnit 4.x"
+        composer global require "phpunit/phpunit:^4"
+        ;;
+      5.2)
+        # Do nothing, use default PHPUnit 3.6.x
+        echo "Using default PHPUnit, hopefully 3.6"
+        ;;
+      *)
+        echo "No PHPUnit version handling for PHP version $TRAVIS_PHP_VERSION"
+        exit 1
+        ;;
+    esac
+  fi
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - which phpunit
   - phpunit --version
