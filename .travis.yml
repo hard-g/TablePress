@@ -32,7 +32,9 @@ before_script:
   - php --version
   - php -m
   - if [[ ${TRAVIS_PHP_VERSION:0:3} == "5.6" ]]; then composer global require --dev phpunit/phpunit ^5; fi
-  - if [[ ${TRAVIS_PHP_VERSION:0:3} -gt 7.0 ]]; then composer global require --dev phpunit/phpunit ^6; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.1" ]]; then composer global require --dev phpunit/phpunit ^6; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.2" ]]; then composer global require --dev phpunit/phpunit ^6; fi
+  - if [[ ${TRAVIS_PHP_VERSION:0:3} == "7.3" ]]; then composer global require --dev phpunit/phpunit ^6; fi
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - which phpunit
   - phpunit --version
