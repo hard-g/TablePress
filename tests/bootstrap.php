@@ -17,6 +17,7 @@ if ( false !== getenv( 'WP_TESTS_DIR' ) ) {
 	$wp_tests_dir = '../../../../../tests/phpunit';
 }
 
+
 $GLOBALS['wp_tests_options'] = array(
 	'active_plugins' => array( 'tablepress/tablepress.php' ),
 );
