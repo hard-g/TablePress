@@ -52,8 +52,7 @@ before_script:
       esac
     fi
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - which phpunit
-  - phpunit --version
+  - $HOME/.composer/vendor/phpunit --version
   - git --version
   - locale -a
   - export WP_DEVELOP_DIR=/tmp/wordpress
