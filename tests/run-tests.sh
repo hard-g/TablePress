@@ -2,8 +2,8 @@
 
 # Run single-site unit tests:
 export WP_MULTISITE=0
-$HOME/.composer/vendor/phpunit --exclude-group=ms-required
+~/.composer/vendor/phpunit --exclude-group=ms-required
 
 # Run Multisite unit tests:
 export WP_MULTISITE=1
-$HOME/.composer/vendor/phpunit --exclude-group=ms-excluded
+~/.composer/vendor/phpunit --exclude-group=ms-excluded
